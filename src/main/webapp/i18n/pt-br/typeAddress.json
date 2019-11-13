@@ -1,0 +1,11 @@
+{
+  "personApp": {
+    "TypeAddress": {
+      "null": "",
+      "APARTMENT": "APARTMENT",
+      "COMMERCIAL": "COMMERCIAL",
+      "HOME": "HOME",
+      "OTHER": "OTHER"
+    }
+  }
+}

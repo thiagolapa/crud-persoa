@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity State.
+    -->
+    <changeSet id="20191030230146-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="country_id"
+                                 baseTableName="state"
+                                 constraintName="fk_state_country_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="country"/>
+    </changeSet>
+
+    <changeSet id="20191030230146-3" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="state"
+                                 constraintName="fk_state_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

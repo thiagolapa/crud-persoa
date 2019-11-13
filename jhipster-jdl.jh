@@ -1,0 +1,58 @@
+
+
+
+entity Country {
+	name String required maxlength(100)
+    createdAt ZonedDateTime
+    updatedAt ZonedDateTime
+}
+
+entity State {
+    name String required maxlength(100)
+    createdAt ZonedDateTime
+    updatedAt ZonedDateTime
+}
+
+entity City {
+    name String required maxlength(100)
+    createdAt ZonedDateTime
+    updatedAt ZonedDateTime
+}
+
+entity Address {
+	streetAddress String
+	postalCode String
+    createdAt ZonedDateTime
+    updatedAt ZonedDateTime
+    typeAddress TypeAddress
+    number Integer
+    complement String
+    district String
+}
+
+entity Person {
+	name String required maxlength(100)
+    sex Sex
+	email String maxlength(100)
+    dateOfBirth ZonedDateTime required
+	cpf String required maxlength(20)
+    createdAt ZonedDateTime
+    updatedAt ZonedDateTime
+    naturalness String
+    nationality String
+}
+
+enum Sex {
+    MALE, FEMALE
+}
+
+enum TypeAddress {
+    APARTMENT, COMMERCIAL, HOME, OTHER
+}
+
+relationship OneToMany {
+	State {country required} to Country {states}
+	City {state required} to State {cities}
+	Address {person} to Person {addresses}
+	Address {city} to City {addresses}
+ }

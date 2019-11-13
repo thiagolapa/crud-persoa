@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="personApp.address.home.title">Addresses</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-address" [routerLink]="['/address/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="personApp.address.home.createLabel">
+            Create a new Address
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="addresses?.length === 0">
+        <span jhiTranslate="personApp.address.home.notFound">No addresses found</span>
+    </div>
+    <div class="table-responsive" *ngIf="addresses?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.streetAddress">Street Address</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.postalCode">Postal Code</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.createdAt">Created At</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.updatedAt">Updated At</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.typeAddress">Type Address</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.number">Number</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.complement">Complement</span></th>
+            <th scope="col" ><span jhiTranslate="personApp.address.district">District</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let address of addresses ;trackBy: trackId">
+                <td><a [routerLink]="['/address', address.id, 'view' ]">{{address.id}}</a></td>
+                <td>{{address.streetAddress}}</td>
+                <td>{{address.postalCode}}</td>
+                <td>{{address.createdAt | date:'medium'}}</td>
+                <td>{{address.updatedAt | date:'medium'}}</td>
+                <td jhiTranslate="{{'personApp.TypeAddress.' + address.typeAddress}}">{{address.typeAddress}}</td>
+                <td>{{address.number}}</td>
+                <td>{{address.complement}}</td>
+                <td>{{address.district}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/address', address.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/address', address.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/address', { outlets: { popup: address.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="person">
+            <h2><span jhiTranslate="personApp.person.detail.title">Person</span> {{person.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="personApp.person.name">Name</span></dt>
+                <dd>
+                    <span>{{person.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.sex">Sex</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'personApp.Sex.' + person.sex}}">{{person.sex}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.email">Email</span></dt>
+                <dd>
+                    <span>{{person.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.dateOfBirth">Date Of Birth</span></dt>
+                <dd>
+                    <span>{{person.dateOfBirth}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{person.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{person.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{person.updatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.naturalness">Naturalness</span></dt>
+                <dd>
+                    <span>{{person.naturalness}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.nationality">Nationality</span></dt>
+                <dd>
+                    <span>{{person.nationality}}</span>
+                </dd>
+                <dt><span jhiTranslate="personApp.person.addresses">Addresses</span></dt>
+                <dd>
+                    <div *ngIf="person.addresses">
+                        <a [routerLink]="['/address', person.addresses?.id, 'view']">{{person.addresses?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/person', person.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
