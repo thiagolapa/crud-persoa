@@ -1,14 +1,14 @@
 import { Moment } from 'moment';
-import { IState } from 'app/shared/model/state.model';
-import { IAddress } from 'app/shared/model/address.model';
 
 export interface ICity {
   id?: number;
   name?: string;
   createdAt?: Moment;
   updatedAt?: Moment;
-  states?: IState[];
-  addresses?: IAddress;
+  stateId?: number;
+  stateName?: string;
+  countryId?: number;
+  countryName?: string;
 }
 
 export class City implements ICity {
@@ -17,7 +17,9 @@ export class City implements ICity {
     public name?: string,
     public createdAt?: Moment,
     public updatedAt?: Moment,
-    public states?: IState[],
-    public addresses?: IAddress
+    public stateId?: number,
+    public stateName?: string,
+    public countryId?: number,
+    public countryName?: string
   ) {}
 }

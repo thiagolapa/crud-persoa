@@ -2,30 +2,32 @@
   "personApp": {
     "person": {
       "home": {
-        "title": "People",
-        "createLabel": "Criar novo Person",
-        "createOrEditLabel": "Criar ou editar Person",
-        "notFound": "Nenhum Person encontrado"
+        "title": "Pessoas",
+        "createLabel": "Criar pessoa",
+        "create": "Criar/Atualizar Pessoa",
+        "update": "Atualizar Pessoas",
+        "notFound": "Nenhum Pessoa encontrada."
       },
-      "created": "Um novo Person foi criado com o identificador {{ param }}",
-      "updated": "Um Person foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Person foi excluído com o identificador {{ param }}",
+      "created": "Uma nova Pessoa foi criada com o identificador {{ param }}",
+      "updated": "Uma Pessoa foi atualizada com o identificador {{ param }}",
+      "deleted": "Uma Pessoa foi excluída com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Person {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Pessoa {{ id }}?"
       },
       "detail": {
-        "title": "Person"
+        "title": "Pessoa"
       },
-      "name": "Name",
-      "sex": "Sex",
+      "name": "Nome",
+      "sex": "Sexo",
       "email": "Email",
-      "dateOfBirth": "Date Of Birth",
+      "dateOfBirth": "Data de nascimento",
       "cpf": "Cpf",
-      "createdAt": "Created At",
-      "updatedAt": "Updated At",
-      "naturalness": "Naturalness",
-      "nationality": "Nationality",
-      "addresses": "Addresses"
+      "createdAt": "Data de cadastro",
+      "updatedAt": "Data de atualização",
+      "naturalness": "Naturalidade",
+      "nationality": "Nacionalidade",
+      "addresses": "Endereços",
+      "invalidCPF": "O CPF informado é inválido."
     }
   }
 }

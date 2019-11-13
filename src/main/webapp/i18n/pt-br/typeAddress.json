@@ -1,11 +1,11 @@
 {
   "personApp": {
     "TypeAddress": {
-      "null": "",
-      "APARTMENT": "APARTMENT",
-      "COMMERCIAL": "COMMERCIAL",
-      "HOME": "HOME",
-      "OTHER": "OTHER"
+      "SELECTED": "Selecione",
+      "APARTMENT": "Apartamento",
+      "COMMERCIAL": "Comercial",
+      "HOME": "Casa",
+      "OTHER": "Outros"
     }
   }
 }

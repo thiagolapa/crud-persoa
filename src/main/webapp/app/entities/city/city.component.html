@@ -22,7 +22,6 @@
             <th scope="col" ><span jhiTranslate="personApp.city.name">Name</span></th>
             <th scope="col" ><span jhiTranslate="personApp.city.createdAt">Created At</span></th>
             <th scope="col" ><span jhiTranslate="personApp.city.updatedAt">Updated At</span></th>
-            <th scope="col" ><span jhiTranslate="personApp.city.addresses">Addresses</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -32,11 +31,6 @@
                 <td>{{city.name}}</td>
                 <td>{{city.createdAt | date:'medium'}}</td>
                 <td>{{city.updatedAt | date:'medium'}}</td>
-                <td>
-                    <div *ngIf="city.addresses">
-                        <a [routerLink]="['/address', city.addresses?.id, 'view' ]" >{{city.addresses?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

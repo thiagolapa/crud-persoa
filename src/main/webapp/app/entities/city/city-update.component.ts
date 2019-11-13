@@ -5,13 +5,14 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { ICity, City } from 'app/shared/model/city.model';
 import { CityService } from './city.service';
-import { IAddress } from 'app/shared/model/address.model';
-import { AddressService } from 'app/entities/address/address.service';
+import { IState } from 'app/shared/model/state.model';
+import { StateService } from 'app/entities/state/state.service';
+import { ICountry } from 'app/shared/model/country.model';
+import { CountryService } from 'app/entities/country/country.service';
+
 
 @Component({
   selector: 'jhi-city-update',
@@ -20,20 +21,21 @@ import { AddressService } from 'app/entities/address/address.service';
 export class CityUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  addresses: IAddress[];
+  state: IState[];
+  countries: ICountry[];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required, Validators.maxLength(100)]],
-    createdAt: [],
-    updatedAt: [],
-    addresses: []
+    stateId: [null, Validators.required],
+    countryId: [null, Validators.required]
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected cityService: CityService,
-    protected addressService: AddressService,
+    protected stateService: StateService,
+    protected countryService: CountryService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -43,18 +45,21 @@ export class CityUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ city }) => {
       this.updateForm(city);
     });
-    this.addressService
+    this.countryService
+    .query()
+    .subscribe((res: HttpResponse<ICountry[]>) => (this.countries = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+
+    this.stateService
       .query()
-      .subscribe((res: HttpResponse<IAddress[]>) => (this.addresses = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: HttpResponse<IState[]>) => (this.state = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(city: ICity) {
     this.editForm.patchValue({
       id: city.id,
       name: city.name,
-      createdAt: city.createdAt != null ? city.createdAt.format(DATE_TIME_FORMAT) : null,
-      updatedAt: city.updatedAt != null ? city.updatedAt.format(DATE_TIME_FORMAT) : null,
-      addresses: city.addresses
+      stateId: city.stateId,
+      countryId: city.countryId
     });
   }
 
@@ -77,11 +82,8 @@ export class CityUpdateComponent implements OnInit {
       ...new City(),
       id: this.editForm.get(['id']).value,
       name: this.editForm.get(['name']).value,
-      createdAt:
-        this.editForm.get(['createdAt']).value != null ? moment(this.editForm.get(['createdAt']).value, DATE_TIME_FORMAT) : undefined,
-      updatedAt:
-        this.editForm.get(['updatedAt']).value != null ? moment(this.editForm.get(['updatedAt']).value, DATE_TIME_FORMAT) : undefined,
-      addresses: this.editForm.get(['addresses']).value
+      stateId: this.editForm.get(['stateId']).value,
+      countryId: this.editForm.get(['countryId']).value
     };
   }
 
@@ -101,7 +103,11 @@ export class CityUpdateComponent implements OnInit {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  trackAddressById(index: number, item: IAddress) {
+  trackCountryById(index: number, item: ICountry) {
+    return item.id;
+  }
+
+  trackStateById(index: number, item: IState) {
     return item.id;
   }
 }

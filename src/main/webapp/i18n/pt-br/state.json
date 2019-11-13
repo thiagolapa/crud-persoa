@@ -2,25 +2,26 @@
   "personApp": {
     "state": {
       "home": {
-        "title": "States",
-        "createLabel": "Criar novo State",
-        "createOrEditLabel": "Criar ou editar State",
-        "notFound": "Nenhum State encontrado"
+        "title": "Estados",
+        "createLabel": "Criar estado",
+        "create": "Criar/Atualizar estado",
+        "update": "Atualizar Estado",
+        "notFound": "Nenhum Estado encontrado"
       },
-      "created": "Um novo State foi criado com o identificador {{ param }}",
-      "updated": "Um State foi atualizado com o identificador {{ param }}",
-      "deleted": "Um State foi excluído com o identificador {{ param }}",
+      "created": "Um novo Estado foi criado com o identificador {{ param }}",
+      "updated": "Um Estado foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Estado foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir State {{ id }}?"
+        "question": "Tem certeza de que deseja excluir o Estado {{ id }}?"
       },
       "detail": {
-        "title": "State"
+        "title": "Estado"
       },
-      "name": "Name",
-      "createdAt": "Created At",
-      "updatedAt": "Updated At",
-      "country": "Country",
-      "cities": "Cities"
+      "name": "Nome",
+      "createdAt": "Data de cadastro",
+      "updatedAt": "Data de atualização",
+      "cities": "Cidade",
+      "country": "País"
     }
   }
 }

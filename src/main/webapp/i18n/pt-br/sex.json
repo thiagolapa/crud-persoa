@@ -1,9 +1,9 @@
 {
   "personApp": {
     "Sex": {
-      "null": "",
-      "MALE": "MALE",
-      "FEMALE": "FEMALE"
+      "SELECT": "Selecione",
+      "MALE": "Masculino",
+      "FEMALE": "Feminino"
     }
   }
 }

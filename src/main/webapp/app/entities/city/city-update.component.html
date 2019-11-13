@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-city-heading" jhiTranslate="personApp.city.home.createOrEditLabel">Create or edit a City</h2>
+            <h2 id="jhi-city-heading" jhiTranslate="personApp.city.home.create">Create or edit a City</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group" [hidden]="!editForm.get('id').value">
@@ -9,7 +9,7 @@
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
                         readonly />
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-4">
                     <label class="form-control-label" jhiTranslate="personApp.city.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
@@ -24,26 +24,35 @@
                         </small>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="personApp.city.createdAt" for="field_createdAt">Created At</label>
-                    <div class="d-flex">
-                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="personApp.city.updatedAt" for="field_updatedAt">Updated At</label>
-                    <div class="d-flex">
-                        <input id="field_updatedAt" type="datetime-local" class="form-control" name="updatedAt" formControlName="updatedAt" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="personApp.city.addresses" for="field_addresses">Addresses</label>
-                    <select class="form-control" id="field_addresses" name="addresses" formControlName="addresses">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="addressOption.id === editForm.get('addresses').value?.id ? editForm.get('addresses').value : addressOption" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="personApp.state.country" for="field_country">Countries</label>
+                    <select class="form-control" id="field_country" name="country" formControlName="countryId">
+                        <option [ngValue]="null">{{ 'global.form.select.country' | translate }}</option>
+                        <option [ngValue]="countryOption.id" *ngFor="let countryOption of countries; trackBy: trackCountryById">{{countryOption.name}}</option>
                     </select>
                 </div>
+                <div *ngIf="editForm.get('countryId').invalid && (editForm.get('countryId').dirty || editForm.get('countryId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('countryId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="form-control-label" jhiTranslate="personApp.country.states" for="field_states">States</label>
+                    <select class="form-control" id="field_states" name="states" formControlName="stateId">
+                        <option [ngValue]="null">{{ 'global.form.select.state' | translate }}</option>
+                        <option [ngValue]="stateOption.id" *ngFor="let stateOption of state; trackBy: trackStateById">{{stateOption.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stateId').invalid && (editForm.get('stateId').dirty || editForm.get('stateId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stateId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

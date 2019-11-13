@@ -17,12 +17,6 @@
                 <dd>
                     <span>{{country.updatedAt}}</span>
                 </dd>
-                <dt><span jhiTranslate="personApp.country.states">States</span></dt>
-                <dd>
-                    <div *ngIf="country.states">
-                        <a [routerLink]="['/state', country.states?.id, 'view']">{{country.states?.id}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

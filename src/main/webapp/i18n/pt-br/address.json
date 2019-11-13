@@ -2,30 +2,31 @@
   "personApp": {
     "address": {
       "home": {
-        "title": "Addresses",
-        "createLabel": "Criar novo Address",
-        "createOrEditLabel": "Criar ou editar Address",
-        "notFound": "Nenhum Address encontrado"
+        "title": "Endereços",
+        "createLabel": "Criar Endereço",
+        "createOrEditLabel": "Criar/Atualizar endereço",
+        "notFound": "Nenhum Endereço encontrado"
       },
-      "created": "Um novo Address foi criado com o identificador {{ param }}",
-      "updated": "Um Address foi atualizado com o identificador {{ param }}",
-      "deleted": "Um Address foi excluído com o identificador {{ param }}",
+      "created": "Um novo Endereço foi criado com o identificador {{ param }}",
+      "updated": "Um Endereço foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Endereço foi excluído com o identificador {{ param }}",
       "delete": {
-        "question": "Tem certeza de que deseja excluir Address {{ id }}?"
+        "question": "Tem certeza de que deseja excluir Endereço {{ id }}?"
       },
       "detail": {
-        "title": "Address"
+        "title": "Endereço",
+        "noAddress": "Nenhum endereço cadastrado."
       },
-      "streetAddress": "Street Address",
-      "postalCode": "Postal Code",
-      "createdAt": "Created At",
-      "updatedAt": "Updated At",
-      "typeAddress": "Type Address",
-      "number": "Number",
-      "complement": "Complement",
-      "district": "District",
-      "person": "Person",
-      "city": "City"
+      "streetAddress": "Rua",
+      "postalCode": "CEP",
+      "createdAt": "Data de cadastro",
+      "updatedAt": "Data de atualização",
+      "typeAddress": "Tipo de endereço",
+      "number": "Numero",
+      "complement": "Complemento",
+      "district": "Bairro",
+      "person": "Pessoa",
+      "city": "Cidade"
     }
   }
 }

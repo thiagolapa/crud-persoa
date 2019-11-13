@@ -22,7 +22,6 @@
             <th scope="col" ><span jhiTranslate="personApp.state.name">Name</span></th>
             <th scope="col" ><span jhiTranslate="personApp.state.createdAt">Created At</span></th>
             <th scope="col" ><span jhiTranslate="personApp.state.updatedAt">Updated At</span></th>
-            <th scope="col" ><span jhiTranslate="personApp.state.cities">Cities</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -32,11 +31,6 @@
                 <td>{{state.name}}</td>
                 <td>{{state.createdAt | date:'medium'}}</td>
                 <td>{{state.updatedAt | date:'medium'}}</td>
-                <td>
-                    <div *ngIf="state.cities">
-                        <a [routerLink]="['/city', state.cities?.id, 'view' ]" >{{state.cities?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

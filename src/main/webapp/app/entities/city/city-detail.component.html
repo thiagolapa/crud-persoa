@@ -17,12 +17,6 @@
                 <dd>
                     <span>{{city.updatedAt}}</span>
                 </dd>
-                <dt><span jhiTranslate="personApp.city.addresses">Addresses</span></dt>
-                <dd>
-                    <div *ngIf="city.addresses">
-                        <a [routerLink]="['/address', city.addresses?.id, 'view']">{{city.addresses?.id}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

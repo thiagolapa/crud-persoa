@@ -1,17 +1,18 @@
 {
   "global": {
-    "title": "Person",
+    "search": "Pesquisar",
+    "title": "Gerenciamento de Pessoas",
     "browsehappy": "Você está usando um navegador <strong>desatualizado</strong>. Favor <a href=\"http://browsehappy.com/?locale=pt_BR\">atualize o seu navegador</a> para ter uma experiência melhor.",
     "menu": {
       "home": "Início",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Entidades",
-        "country": "Country",
-        "state": "State",
-        "city": "City",
-        "address": "Address",
-        "person": "Person",
+        "main": "Cadastros",
+        "country": "País",
+        "state": "Estado",
+        "city": "Cidade",
+        "address": "Endereço",
+        "person": "Pessoa",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -32,7 +33,7 @@
         "configuration": "Configuração",
         "logs": "Logs",
         "audits": "Auditorias",
-        "apidocs": "API",
+        "apidocs": "Swagger - API",
         "database": "Banco de dados",
         "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
       },
@@ -48,7 +49,12 @@
       "confirmpassword.label": "Confirmação de nova senha",
       "confirmpassword.placeholder": "Confirme a nova senha",
       "email.label": "E-mail",
-      "email.placeholder": "Seu e-mail"
+      "email.placeholder": "Seu e-mail",
+      "select.country": "Selecione o País",
+      "select.state": "Selecione o Estado",
+      "select.city": "Selecione a Cidade",
+      "select.sex": "Selecione o Sexo",
+      "select.typeAddress": "Selecione o Tipo de Endereço"
     },
     "messages": {
       "info": {
@@ -86,7 +92,13 @@
       }
     },
     "field": {
-      "id": "Código"
+      "id": "Código",
+      "date": {
+        "from": "Início",
+        "to": "Fim",
+        "status": "Status",
+        "placeholder": "DD/MM/AAAA"
+      }
     },
     "ribbon": {
       "dev": "Desenvolvimento"
@@ -103,7 +115,10 @@
       "edit": "Editar",
       "open": "Abrir",
       "save": "Salvar",
-      "view": "Visualizar"
+      "view": "Visualizar",
+      "add": "Adicionar",
+      "new": "+ Endereço",
+      "remove": "Remover"
     },
     "detail": {
       "field": "Campo",
@@ -135,7 +150,18 @@
     "userexists": "Usuário já está cadastrado!",
     "emailexists": "E-mail já está cadastrado!",
     "idexists": "Novo(a) {{entityName}} não pode ter um identificador",
-    "idnull": "Identificador inválido"
+    "idnull": "Identificador inválido",
+    "personNameNotNull": "Nome da pessoa é obrigatório.",
+    "personNameExists": "Já existe uma pessoa com mesmo nome cadastrado.",
+    "personNotFound": "Pessoa não encontrada.",
+    "personCpfExists": "Já existe uma pessoa com o mesmo cpf cadastrado.",
+    "addressFound": "Endereço já existe.",
+    "addressNotAdd": "É necessário adicionar um endereço ao cadastro.",
+    "dateOfBirthNull": "Data de nascimento obrigatório."
   },
-  "footer": "Este é o rodapé da página"
+  "footer": {
+    "developedBy": "Desenvolvido por Avaliado!",
+    "copyright": "Copyright © {{ year }}",
+    "version": "Versão {{ version }}"
+  }
 }

@@ -5,13 +5,11 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { IState, State } from 'app/shared/model/state.model';
 import { StateService } from './state.service';
-import { ICity } from 'app/shared/model/city.model';
-import { CityService } from 'app/entities/city/city.service';
+import { ICountry } from 'app/shared/model/country.model';
+import { CountryService } from 'app/entities/country/country.service';
 
 @Component({
   selector: 'jhi-state-update',
@@ -20,20 +18,18 @@ import { CityService } from 'app/entities/city/city.service';
 export class StateUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  cities: ICity[];
+  countries: ICountry[];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required, Validators.maxLength(100)]],
-    createdAt: [],
-    updatedAt: [],
-    cities: []
+    countryId: [null, Validators.required]
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected stateService: StateService,
-    protected cityService: CityService,
+    protected countryService: CountryService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -43,18 +39,17 @@ export class StateUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ state }) => {
       this.updateForm(state);
     });
-    this.cityService
-      .query()
-      .subscribe((res: HttpResponse<ICity[]>) => (this.cities = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+
+    this.countryService
+    .query()
+    .subscribe((res: HttpResponse<ICountry[]>) => (this.countries = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(state: IState) {
     this.editForm.patchValue({
       id: state.id,
       name: state.name,
-      createdAt: state.createdAt != null ? state.createdAt.format(DATE_TIME_FORMAT) : null,
-      updatedAt: state.updatedAt != null ? state.updatedAt.format(DATE_TIME_FORMAT) : null,
-      cities: state.cities
+      countryId: state.countryId
     });
   }
 
@@ -77,11 +72,7 @@ export class StateUpdateComponent implements OnInit {
       ...new State(),
       id: this.editForm.get(['id']).value,
       name: this.editForm.get(['name']).value,
-      createdAt:
-        this.editForm.get(['createdAt']).value != null ? moment(this.editForm.get(['createdAt']).value, DATE_TIME_FORMAT) : undefined,
-      updatedAt:
-        this.editForm.get(['updatedAt']).value != null ? moment(this.editForm.get(['updatedAt']).value, DATE_TIME_FORMAT) : undefined,
-      cities: this.editForm.get(['cities']).value
+      countryId: this.editForm.get(['countryId']).value
     };
   }
 
@@ -101,7 +92,7 @@ export class StateUpdateComponent implements OnInit {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  trackCityById(index: number, item: ICity) {
+  trackCountryById(index: number, item: ICountry) {
     return item.id;
   }
 }

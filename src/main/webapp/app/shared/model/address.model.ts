@@ -1,6 +1,4 @@
 import { Moment } from 'moment';
-import { IPerson } from 'app/shared/model/person.model';
-import { ICity } from 'app/shared/model/city.model';
 import { TypeAddress } from 'app/shared/model/enumerations/type-address.model';
 
 export interface IAddress {
@@ -13,8 +11,9 @@ export interface IAddress {
   number?: number;
   complement?: string;
   district?: string;
-  people?: IPerson[];
-  cities?: ICity[];
+  personId?: number;
+  cityId?: number;
+  cityName?: string;
 }
 
 export class Address implements IAddress {
@@ -28,7 +27,8 @@ export class Address implements IAddress {
     public number?: number,
     public complement?: string,
     public district?: string,
-    public people?: IPerson[],
-    public cities?: ICity[]
+    public personId?: number,
+    public cityId?: number,
+    public cityName?: string
   ) {}
 }
