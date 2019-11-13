@@ -8,13 +8,42 @@
             </span>
         </button>
     </h2>
+
+    <form>
+        <div class="filter-wrapper">
+            <input type="text" class="form-control" name="search" id="field_name" class="form-control bg-white"
+                   (change)="doSearch()" [placeholder]="'global.search' | translate"/>
+
+            <div>
+                <label class="control-label" jhiTranslate="global.field.date.from">From</label>
+                <input id="field_fromDate" type="datetime-local" class="form-control" name="fromDate"
+                       placeholder="YYYY-MM-DD" [(ngModel)]="dateFilter.fromDate" />
+            </div>
+            <div>
+                <label class="control-label" jhiTranslate="global.field.date.to">To</label>
+                <input id="field_toDate" type="datetime-local" class="form-control" name="toDate"
+                       placeholder="YYYY-MM-DD" [(ngModel)]="dateFilter.toDate"/>
+            </div>
+
+            <div>
+                <label class="control-label" jhiTranslate="personApp.person.sex" for="field_sex">Sex</label>
+                <select class="form-control form-control-white" [(ngModel)]="selectedSex" name="sex" id="field_sex" (click)="changeTab(selectedSex)">
+                    <option [ngValue]="null">{{'personApp.Sex.SELECT' | translate }}</option>
+                    <option value="MALE">{{'personApp.Sex.MALE' | translate}}</option>
+                    <option value="FEMALE">{{'personApp.Sex.FEMALE' | translate}}</option>
+                </select>
+            </div>
+
+        </div>
+    </form>
+
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="alert alert-warning" *ngIf="people?.length === 0">
         <span jhiTranslate="personApp.person.home.notFound">No people found</span>
     </div>
-    <div class="table-responsive" *ngIf="people?.length > 0">
+    <div class="table-responsive" *ngIf="!loading && people?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
@@ -28,7 +57,6 @@
             <th scope="col" ><span jhiTranslate="personApp.person.updatedAt">Updated At</span></th>
             <th scope="col" ><span jhiTranslate="personApp.person.naturalness">Naturalness</span></th>
             <th scope="col" ><span jhiTranslate="personApp.person.nationality">Nationality</span></th>
-            <th scope="col" ><span jhiTranslate="personApp.person.addresses">Addresses</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
@@ -40,15 +68,10 @@
                 <td>{{person.email}}</td>
                 <td>{{person.dateOfBirth | date:'medium'}}</td>
                 <td>{{person.cpf}}</td>
-                <td>{{person.createdAt | date:'medium'}}</td>
-                <td>{{person.updatedAt | date:'medium'}}</td>
+                <td>{{person.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td>{{person.updatedAt | date:'dd/MM/yyyy'}}</td>
                 <td>{{person.naturalness}}</td>
                 <td>{{person.nationality}}</td>
-                <td>
-                    <div *ngIf="person.addresses">
-                        <a [routerLink]="['/address', person.addresses?.id, 'view' ]" >{{person.addresses?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
@@ -76,5 +99,10 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div [hidden]="loading || people?.length === 0" class="mt-4">
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

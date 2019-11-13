@@ -29,8 +29,8 @@
             <tr *ngFor="let city of cities ;trackBy: trackId">
                 <td><a [routerLink]="['/city', city.id, 'view' ]">{{city.id}}</a></td>
                 <td>{{city.name}}</td>
-                <td>{{city.createdAt | date:'medium'}}</td>
-                <td>{{city.updatedAt | date:'medium'}}</td>
+                <td>{{city.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td>{{city.updatedAt | date:'dd/MM/yyyy'}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

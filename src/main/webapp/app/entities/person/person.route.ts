@@ -11,6 +11,7 @@ import { PersonDetailComponent } from './person-detail.component';
 import { PersonUpdateComponent } from './person-update.component';
 import { PersonDeletePopupComponent } from './person-delete-dialog.component';
 import { IPerson } from 'app/shared/model/person.model';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 
 @Injectable({ providedIn: 'root' })
 export class PersonResolve implements Resolve<IPerson> {
@@ -25,10 +26,26 @@ export class PersonResolve implements Resolve<IPerson> {
   }
 }
 
+@Injectable({ providedIn: 'root' })
+export class PersonResolvePagingParams implements Resolve<any> {
+  resolve(route: ActivatedRouteSnapshot) {
+    const fromDate = route.queryParams['fromDate'] ? route.queryParams['fromDate'] : '';
+    const toDate = route.queryParams['toDate'] ? route.queryParams['toDate'] : '';
+    return {
+      fromDate,
+      toDate
+    };
+  }
+}
+
 export const personRoute: Routes = [
   {
     path: '',
     component: PersonComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams,
+      opParams: PersonResolvePagingParams
+    },
     data: {
       authorities: ['ROLE_USER'],
       pageTitle: 'personApp.person.home.title'

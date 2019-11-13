@@ -30,8 +30,8 @@
             <tr *ngFor="let country of countries ;trackBy: trackId">
                 <td><a [routerLink]="['/country', country.id, 'view' ]">{{country.id}}</a></td>
                 <td>{{country.name}}</td>
-                <td>{{country.createdAt | date:'medium'}}</td>
-                <td>{{country.updatedAt | date:'medium'}}</td>
+                <td>{{country.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td>{{country.updatedAt | date:'dd/MM/yyyy'}}</td>
                 <td>
                     <div *ngIf="country.states">
                         <a [routerLink]="['/state', country.states?.id, 'view' ]" >{{country.states?.id}}</a>

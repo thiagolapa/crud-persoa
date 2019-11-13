@@ -1,0 +1,54 @@
+/* ==========================================================================
+Footer styles
+========================================================================== */
+
+:host {
+  flex-shrink: 0;
+}
+
+.footer {
+  width: 100%;
+  color: #525e6c;
+  text-align: right;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.footer-container {
+  background: transparent;
+  padding-right: 15px;
+
+  .version {
+    width: 100%;
+    text-align: right;
+    font-family: Lato;
+    font-weight: bold;
+    letter-spacing: 0;
+    display: block;
+  }
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+
+.logo-img-footer {
+  margin-left: 5px;
+  margin-right: 5px;
+  height: 50px;
+  width: 100px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  background-size: contain;
+}
+
+.logo-softplan-footer {
+  margin-left: 5px;
+  height: 50px;
+  width: 80px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  background-size: contain;
+}

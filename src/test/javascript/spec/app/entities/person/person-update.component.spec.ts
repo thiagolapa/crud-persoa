@@ -33,7 +33,7 @@ describe('Component Tests', () => {
         // GIVEN
         const entity = new Person(123);
         spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
-        comp.updateForm(entity);
+        comp.person = entity;
         // WHEN
         comp.save();
         tick(); // simulate async
@@ -47,7 +47,7 @@ describe('Component Tests', () => {
         // GIVEN
         const entity = new Person();
         spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
-        comp.updateForm(entity);
+        comp.person = entity;
         // WHEN
         comp.save();
         tick(); // simulate async

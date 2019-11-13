@@ -29,8 +29,8 @@
             <tr *ngFor="let state of states ;trackBy: trackId">
                 <td><a [routerLink]="['/state', state.id, 'view' ]">{{state.id}}</a></td>
                 <td>{{state.name}}</td>
-                <td>{{state.createdAt | date:'medium'}}</td>
-                <td>{{state.updatedAt | date:'medium'}}</td>
+                <td>{{state.createdAt | date:'dd/MM/yyyy'}}</td>
+                <td>{{state.updatedAt | date:'dd/MM/yyyy'}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

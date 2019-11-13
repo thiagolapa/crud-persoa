@@ -13,7 +13,7 @@ export interface IPerson {
   updatedAt?: Moment;
   naturalness?: string;
   nationality?: string;
-  addresses?: IAddress;
+  addresses?: IAddress[];
 }
 
 export class Person implements IPerson {
@@ -28,6 +28,6 @@ export class Person implements IPerson {
     public updatedAt?: Moment,
     public naturalness?: string,
     public nationality?: string,
-    public addresses?: IAddress
+    public addresses?: IAddress[]
   ) {}
 }

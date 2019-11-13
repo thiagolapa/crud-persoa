@@ -9,13 +9,17 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IPerson } from 'app/shared/model/person.model';
+import { IAddress } from 'app/shared/model/address.model';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 type EntityResponseType = HttpResponse<IPerson>;
 type EntityArrayResponseType = HttpResponse<IPerson[]>;
+type EntityAddressArrayResponseType = HttpResponse<IAddress[]>;
 
 @Injectable({ providedIn: 'root' })
 export class PersonService {
   public resourceUrl = SERVER_API_URL + 'api/people';
+  public resourceUrlAddress = SERVER_API_URL + 'api/addresses';
 
   constructor(protected http: HttpClient) {}
 
@@ -50,11 +54,17 @@ export class PersonService {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findAddressesByPersonId(id: number): Observable<EntityAddressArrayResponseType> {
+    return this.http
+      .get<IAddress[]>(`${this.resourceUrlAddress}/${id}/addresses`, { observe: 'response' })
+      .pipe(map((res: EntityAddressArrayResponseType) => this.convertResponseAddress(res)));
+  }
+
   protected convertDateFromClient(person: IPerson): IPerson {
     const copy: IPerson = Object.assign({}, person, {
-      dateOfBirth: person.dateOfBirth != null && person.dateOfBirth.isValid() ? person.dateOfBirth.toJSON() : null,
-      createdAt: person.createdAt != null && person.createdAt.isValid() ? person.createdAt.toJSON() : null,
-      updatedAt: person.updatedAt != null && person.updatedAt.isValid() ? person.updatedAt.toJSON() : null
+      dateOfBirth: person.dateOfBirth != null ? moment(person.dateOfBirth, DATE_TIME_FORMAT).toJSON() : null,
+      createdAt: person.createdAt != null ? moment(person.createdAt, DATE_TIME_FORMAT).toJSON() : null,
+      updatedAt: person.updatedAt != null ? moment(person.updatedAt, DATE_TIME_FORMAT).toJSON() : null
     });
     return copy;
   }
@@ -78,4 +88,10 @@ export class PersonService {
     }
     return res;
   }
+
+  protected convertResponseAddress(res: EntityAddressArrayResponseType): EntityAddressArrayResponseType {
+    const body: IAddress[] = res.body;
+    return res.clone({ body });
+  }
+
 }
