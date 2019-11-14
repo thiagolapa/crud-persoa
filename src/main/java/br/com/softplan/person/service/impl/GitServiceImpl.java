@@ -12,7 +12,7 @@ public class GitServiceImpl implements GitService {
 
     private final Logger log = LoggerFactory.getLogger(GitServiceImpl.class);
 
-    private static final String LINK_GIT = "https://github.com/thiagolapa/rafa";
+    private static final String LINK_GIT = "https://github.com/thiagolapa/crud-persoa";
 
     /**
      * Get one git link.
