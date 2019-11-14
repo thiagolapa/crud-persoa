@@ -62,7 +62,7 @@
                 <div class="form-group col-md-4">
                     <label class="form-control-label" jhiTranslate="personApp.person.dateOfBirth" for="field_dateOfBirth">Date Of Birth</label>
                     <div class="d-flex">
-                        <input id="field_dateOfBirth" type="datetime-local" class="form-control" name="dateOfBirth"
+                        <input id="field_dateOfBirth" type="date" class="form-control" name="dateOfBirth"
                                placeholder="DD/MM/YYYY" #personDateOfBirth="ngModel" [(ngModel)]="person.dateOfBirth"/>
                     </div>
                     <div *ngIf="personDateOfBirth.invalid && (personDateOfBirth.dirty || personDateOfBirth.touched)">

@@ -9,7 +9,6 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import * as moment from 'moment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
-// import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-person',
@@ -39,7 +38,6 @@ export class PersonComponent implements OnInit, OnDestroy {
   routeData: any;
   links: any;
   loading = false;
-//   currentAccount: any;
 
   constructor(
   protected personService: PersonService,
@@ -47,7 +45,6 @@ export class PersonComponent implements OnInit, OnDestroy {
   protected router: Router,
   protected activatedRoute: ActivatedRoute,
   protected jhiAlertService: JhiAlertService,
-//   protected accountService: AccountService,
   protected parseLinks: JhiParseLinks) {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
@@ -81,9 +78,6 @@ export class PersonComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.selectedSex = null;
     this.loadAll();
-//     this.accountService.identity().then(account => {
-//       this.currentAccount = account;
-//     });
     this.registerChangeInPeople();
   }
 

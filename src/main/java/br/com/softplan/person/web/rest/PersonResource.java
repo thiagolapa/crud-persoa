@@ -129,30 +129,4 @@ public class PersonResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
-
-//    /**
-//     * DELETE /person/:id/address/:address_id : remove the "addressId" from a person.
-//     *
-//     * @param id
-//     *            the id of the personDTO
-//     * @param addressId
-//     *            the id of the addressDTO to remove from the person
-//     * @return the ResponseEntity with status 200 (OK)
-//     */
-//    @DeleteMapping("/people/{id}/address-remove/{addressId}")
-//    @Secured({AuthoritiesConstants.USER})
-//    public ResponseEntity<Void> removeAddressFromPerson(@PathVariable Long id, @PathVariable Long addressId) {
-//        if (personService.findOne(id) == null) {
-//            throw new GoneAlertException("Person not Found", ENTITY_NAME, "personNotFound");
-//        }
-//        Optional<AddressDTO> address = addressService.findOne(addressId);
-//        if (!address.isPresent()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                .headers(HeaderUtil.createAlert(ENTITY_NAME, "addressNotFound", "This address has not been found"))
-//                .body(null);
-//        }
-//        addressService.delete(address.get().getId());
-//        return ResponseEntity.ok()
-//            .headers(HeaderUtil.createAlert(ENTITY_NAME, "personAddressRemoved", addressId.toString())).build();
-//    }
 }

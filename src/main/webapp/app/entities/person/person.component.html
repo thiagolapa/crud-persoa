@@ -12,18 +12,18 @@
     <form>
         <div class="filter-wrapper">
             <input type="text" class="form-control" name="search" id="field_name" class="form-control bg-white"
-                   (change)="doSearch()" [placeholder]="'global.search' | translate"/>
+                   (keyup)="loadAll()" [placeholder]="'global.search' | translate" [(ngModel)]="search"/>
 
-            <div>
-                <label class="control-label" jhiTranslate="global.field.date.from">From</label>
-                <input id="field_fromDate" type="datetime-local" class="form-control" name="fromDate"
-                       placeholder="YYYY-MM-DD" [(ngModel)]="dateFilter.fromDate" />
-            </div>
-            <div>
-                <label class="control-label" jhiTranslate="global.field.date.to">To</label>
-                <input id="field_toDate" type="datetime-local" class="form-control" name="toDate"
-                       placeholder="YYYY-MM-DD" [(ngModel)]="dateFilter.toDate"/>
-            </div>
+<!--            <div>-->
+<!--                <label class="control-label" jhiTranslate="global.field.date.from">From</label>-->
+<!--                <input id="field_fromDate" type="datetime-local" class="form-control" name="fromDate" [value]="fromDate"-->
+<!--                       placeholder="YYYY-MM-DD HH:mm" [(ngModel)]="dateFilter.fromDate" (onUpdate)="registerFromDateChange($event)"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <label class="control-label" jhiTranslate="global.field.date.to">To</label>-->
+<!--                <input id="field_toDate" type="datetime-local" class="form-control" name="toDate" [value]="toDate"-->
+<!--                       placeholder="YYYY-MM-DD HH:mm" [(ngModel)]="dateFilter.toDate" (change)="registerToDateChange($event)"/>-->
+<!--            </div>-->
 
             <div>
                 <label class="control-label" jhiTranslate="personApp.person.sex" for="field_sex">Sex</label>
@@ -66,7 +66,7 @@
                 <td>{{person.name}}</td>
                 <td jhiTranslate="{{'personApp.Sex.' + person.sex}}">{{person.sex}}</td>
                 <td>{{person.email}}</td>
-                <td>{{person.dateOfBirth | date:'medium'}}</td>
+                <td>{{person.dateOfBirth | date:'dd/MM/yyyy'}}</td>
                 <td>{{person.cpf}}</td>
                 <td>{{person.createdAt | date:'dd/MM/yyyy'}}</td>
                 <td>{{person.updatedAt | date:'dd/MM/yyyy'}}</td>
